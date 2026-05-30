@@ -1,7 +1,9 @@
-import { services } from "@/components/ServicesSection";
-
-const serviceDetails = {
-  "#detalle-visa-americana": {
+export const services = [
+  {
+    slug: "visa-americana",
+    icon: "visa",
+    title: "Asesoria para visa americana",
+    text: "Orientacion clara sobre requisitos, etapas y preparacion general del proceso.",
     time: "Revision inicial: 24 a 48 horas. Preparacion completa: 3 a 7 dias habiles, segun la informacion entregada por el cliente.",
     requirements: [
       "Pasaporte vigente.",
@@ -18,7 +20,11 @@ const serviceDetails = {
       "Seguimiento hasta que el cliente tenga claridad sobre los siguientes pasos.",
     ],
   },
-  "#detalle-documentos": {
+  {
+    slug: "organizacion-documentos",
+    icon: "document",
+    title: "Organizacion de documentos",
+    text: "Clasificamos la informacion de respaldo para que tengas un expediente mas ordenado.",
     time: "Organizacion base: 24 a 72 horas. Casos con mayor volumen documental: 3 a 5 dias habiles.",
     requirements: [
       "Documento de identidad y pasaporte, si aplica.",
@@ -34,7 +40,11 @@ const serviceDetails = {
       "Entrega de una guia organizada para completar el expediente.",
     ],
   },
-  "#detalle-entrevista": {
+  {
+    slug: "preparacion-entrevista",
+    icon: "interview",
+    title: "Preparacion para entrevista",
+    text: "Te guiamos con recomendaciones practicas para responder con seguridad y coherencia.",
     time: "Sesion de preparacion: 60 a 90 minutos. Preparacion con simulacion: 1 a 2 dias habiles.",
     requirements: [
       "Resumen claro del motivo de viaje.",
@@ -49,7 +59,11 @@ const serviceDetails = {
       "Retroalimentacion sobre seguridad, orden y consistencia.",
     ],
   },
-  "#detalle-viaje": {
+  {
+    slug: "planificacion-viaje",
+    icon: "plane",
+    title: "Planificacion de viaje",
+    text: "Apoyo para estructurar fechas, motivos de viaje y detalles importantes.",
     time: "Plan basico: 24 a 48 horas. Itinerario mas detallado: 2 a 4 dias habiles.",
     requirements: [
       "Objetivo principal del viaje.",
@@ -65,7 +79,11 @@ const serviceDetails = {
       "Alineacion del plan con la informacion del tramite.",
     ],
   },
-  "#detalle-seguimiento": {
+  {
+    slug: "seguimiento-proceso",
+    icon: "steps",
+    title: "Seguimiento del proceso",
+    text: "Acompanamiento durante las etapas principales para resolver dudas oportunamente.",
     time: "Respuesta a consultas: 24 a 48 horas habiles. Seguimiento activo durante las etapas acordadas del servicio.",
     requirements: [
       "Estado actual del tramite.",
@@ -80,7 +98,11 @@ const serviceDetails = {
       "Acompanamiento por los canales acordados.",
     ],
   },
-  "#detalle-formularios": {
+  {
+    slug: "formularios-requisitos",
+    icon: "compass",
+    title: "Formularios y requisitos",
+    text: "Orientacion para comprender informacion solicitada y evitar errores frecuentes.",
     time: "Revision de datos: 24 a 72 horas. Formularios extensos o casos familiares: 3 a 6 dias habiles.",
     requirements: [
       "Datos personales completos y actualizados.",
@@ -96,55 +118,8 @@ const serviceDetails = {
       "Revision final antes de avanzar a la siguiente etapa.",
     ],
   },
-};
+];
 
-export default function ServiceDetailsSection() {
-  return (
-    <section className="section service-details" id="detalles-servicios" aria-labelledby="detalles-servicios-title">
-      <div className="section-heading reveal">
-        <p className="eyebrow">Detalles por servicio</p>
-        <h2 id="detalles-servicios-title">Requisitos, proceso y tiempos estimados</h2>
-        <p>
-          Cada servicio tiene una ruta de trabajo distinta. Los tiempos pueden variar segun
-          la rapidez de entrega de informacion, disponibilidad de citas y condiciones externas.
-        </p>
-      </div>
-      <div className="service-details-grid">
-        {services.map((service) => {
-          const details = serviceDetails[service.href];
-          return (
-            <article className="detail-card reveal" id={service.href.slice(1)} key={service.href}>
-              <div className="detail-header">
-                <span className="detail-kicker">Servicio</span>
-                <h3>{service.title}</h3>
-                <p>{service.text}</p>
-              </div>
-              <div className="detail-columns">
-                <div>
-                  <h4>Requisitos del cliente</h4>
-                  <ul className="detail-list">
-                    {details.requirements.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h4>Proceso que realizamos</h4>
-                  <ul className="detail-list">
-                    {details.process.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="detail-time">
-                <strong>Tiempo estimado</strong>
-                <span>{details.time}</span>
-              </div>
-            </article>
-          );
-        })}
-      </div>
-    </section>
-  );
+export function getServiceBySlug(slug) {
+  return services.find((service) => service.slug === slug);
 }

@@ -28,7 +28,7 @@ export default function Header({ whatsappUrl }) {
 
   return (
     <header className="site-header">
-      <a className="brand" href="#inicio" aria-label="Services Visas US">
+      <a className="brand" href="/#inicio" aria-label="Services Visas US">
         <Image src="/logo.png" alt="Logo Services Visas US" width={72} height={72} priority />
         <span>Services Visas US</span>
       </a>
@@ -44,6 +44,9 @@ export default function Header({ whatsappUrl }) {
       </button>
 
       <nav className={`main-nav ${isOpen ? "is-open" : ""}`} aria-label="Menu principal">
+        <button className="theme-toggle icon-only" type="button" onClick={toggleTheme} aria-label={theme === "dark" ? "Activar modo claro" : "Activar modo oscuro"}>
+          <Icon name={theme === "dark" ? "sun" : "moon"} />
+        </button>
         {navItems.map((item) => (
           <a key={item.href} href={item.href} onClick={closeMenu}>
             {item.label}
@@ -52,10 +55,6 @@ export default function Header({ whatsappUrl }) {
         <a className="btn btn-small" href={whatsappUrl} target="_blank" rel="noreferrer" onClick={closeMenu}>
           Solicitar asesoria
         </a>
-        <button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={theme === "dark" ? "Activar modo claro" : "Activar modo oscuro"}>
-          <Icon name={theme === "dark" ? "sun" : "moon"} />
-          <span>{theme === "dark" ? "Claro" : "Oscuro"}</span>
-        </button>
       </nav>
     </header>
   );
