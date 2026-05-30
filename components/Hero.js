@@ -25,8 +25,8 @@ export default function Hero({ whatsappUrl }) {
       <div className="hero-visual reveal delay-1" aria-label="Asesoria profesional de viaje">
         <img
           className="hero-photo"
-          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=82"
-          alt="Vista suave de viaje y horizonte para representar orientacion profesional"
+          src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1200&q=82"
+          alt="Documentos organizados para tramites de viaje y asesoria de visa"
         />
         <div className="travel-card main-card">
           <div>

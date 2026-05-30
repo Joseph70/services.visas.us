@@ -9,7 +9,6 @@ export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURICo
 export const navItems = [
   { label: "Inicio", href: "#inicio" },
   { label: "Servicios", href: "#servicios" },
-  { label: "Proceso", href: "#proceso" },
   { label: "Beneficios", href: "#beneficios" },
   { label: "Preguntas frecuentes", href: "#preguntas" },
   { label: "Contacto", href: "#contacto" },

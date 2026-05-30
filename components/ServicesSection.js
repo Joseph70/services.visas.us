@@ -1,12 +1,42 @@
 import { Icon } from "@/components/Icons";
 
-const services = [
-  ["visa", "Asesoria para visa americana", "Orientacion clara sobre requisitos, etapas y preparacion general del proceso."],
-  ["document", "Organizacion de documentos", "Clasificamos la informacion de respaldo para que tengas un expediente mas ordenado."],
-  ["interview", "Preparacion para entrevista", "Te guiamos con recomendaciones practicas para responder con seguridad y coherencia."],
-  ["plane", "Planificacion de viaje", "Apoyo para estructurar fechas, motivos de viaje y detalles importantes."],
-  ["steps", "Seguimiento del proceso", "Acompanamiento durante las etapas principales para resolver dudas oportunamente."],
-  ["compass", "Formularios y requisitos", "Orientacion para comprender informacion solicitada y evitar errores frecuentes."],
+export const services = [
+  {
+    icon: "visa",
+    title: "Asesoria para visa americana",
+    text: "Orientacion clara sobre requisitos, etapas y preparacion general del proceso.",
+    href: "#detalle-visa-americana",
+  },
+  {
+    icon: "document",
+    title: "Organizacion de documentos",
+    text: "Clasificamos la informacion de respaldo para que tengas un expediente mas ordenado.",
+    href: "#detalle-documentos",
+  },
+  {
+    icon: "interview",
+    title: "Preparacion para entrevista",
+    text: "Te guiamos con recomendaciones practicas para responder con seguridad y coherencia.",
+    href: "#detalle-entrevista",
+  },
+  {
+    icon: "plane",
+    title: "Planificacion de viaje",
+    text: "Apoyo para estructurar fechas, motivos de viaje y detalles importantes.",
+    href: "#detalle-viaje",
+  },
+  {
+    icon: "steps",
+    title: "Seguimiento del proceso",
+    text: "Acompanamiento durante las etapas principales para resolver dudas oportunamente.",
+    href: "#detalle-seguimiento",
+  },
+  {
+    icon: "compass",
+    title: "Formularios y requisitos",
+    text: "Orientacion para comprender informacion solicitada y evitar errores frecuentes.",
+    href: "#detalle-formularios",
+  },
 ];
 
 export default function ServicesSection() {
@@ -21,12 +51,13 @@ export default function ServicesSection() {
         </p>
       </div>
       <div className="grid three">
-        {services.map(([icon, title, text]) => (
-          <article className="service-card reveal" key={title}>
-            <span className="icon-badge"><Icon name={icon} /></span>
-            <h3>{title}</h3>
-            <p>{text}</p>
-          </article>
+        {services.map((service) => (
+          <a className="service-card service-link reveal" href={service.href} key={service.title}>
+            <span className="icon-badge"><Icon name={service.icon} /></span>
+            <h3>{service.title}</h3>
+            <p>{service.text}</p>
+            <span className="service-cta">Ver requisitos y tiempos</span>
+          </a>
         ))}
       </div>
     </section>
