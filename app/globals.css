@@ -484,6 +484,7 @@ p {
   position: absolute;
   top: 96px;
   right: 62px;
+  overflow: hidden;
   display: grid;
   place-items: center;
   width: min(250px, 62%);
@@ -524,6 +525,7 @@ p {
 
 .travel-card {
   position: absolute;
+  overflow: hidden;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -536,6 +538,25 @@ p {
     0 6px 14px rgba(15, 63, 105, 0.08);
   backdrop-filter: blur(12px);
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.travel-card::before,
+.passport-card::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle 150px at var(--glow-x, 50%) var(--glow-y, 50%), rgba(240, 199, 83, 0.24), rgba(255, 240, 199, 0.08) 38%, transparent 70%);
+  opacity: 0;
+  transition: opacity 180ms ease;
+  mix-blend-mode: soft-light;
+}
+
+.travel-card:hover::before,
+.passport-card:hover::after {
+  opacity: 1;
 }
 
 .travel-card:hover {
@@ -610,9 +631,11 @@ p {
   content: "";
   pointer-events: none;
   border-radius: inherit;
-  background: radial-gradient(circle at 18% 0%, rgba(240, 199, 83, 0.22), transparent 34%);
+  background:
+    radial-gradient(circle 180px at var(--glow-x, 50%) var(--glow-y, 50%), rgba(240, 199, 83, 0.28), rgba(255, 240, 199, 0.1) 36%, transparent 68%);
   opacity: 0;
-  transition: opacity 220ms ease;
+  transition: opacity 180ms ease;
+  mix-blend-mode: soft-light;
 }
 
 .info-card:hover,
@@ -711,7 +734,15 @@ p {
   inset: 0;
   content: "";
   pointer-events: none;
-  background: radial-gradient(circle at 8% 0%, rgba(240, 199, 83, 0.2), transparent 32%);
+  background:
+    radial-gradient(circle 190px at var(--glow-x, 50%) var(--glow-y, 50%), rgba(240, 199, 83, 0.24), rgba(255, 240, 199, 0.08) 36%, transparent 68%);
+  opacity: 0;
+  transition: opacity 180ms ease;
+  mix-blend-mode: soft-light;
+}
+
+.detail-card:hover::before {
+  opacity: 1;
 }
 
 .detail-header,

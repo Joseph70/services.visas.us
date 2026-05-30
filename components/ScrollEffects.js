@@ -25,6 +25,37 @@ export default function ScrollEffects() {
       { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
     );
 
+    const glowSelector = [
+      ".info-card",
+      ".service-card",
+      ".detail-card",
+      ".process-card",
+      ".benefit-item",
+      ".faq-item",
+      ".contact-form",
+      ".visual-card",
+      ".travel-card",
+      ".passport-card",
+    ].join(",");
+
+    const handleGlowMove = (event) => {
+      const target = event.currentTarget;
+      const rect = target.getBoundingClientRect();
+      target.style.setProperty("--glow-x", `${event.clientX - rect.left}px`);
+      target.style.setProperty("--glow-y", `${event.clientY - rect.top}px`);
+    };
+
+    const handleGlowLeave = (event) => {
+      event.currentTarget.style.removeProperty("--glow-x");
+      event.currentTarget.style.removeProperty("--glow-y");
+    };
+
+    const glowElements = Array.from(document.querySelectorAll(glowSelector));
+    glowElements.forEach((element) => {
+      element.addEventListener("mousemove", handleGlowMove);
+      element.addEventListener("mouseleave", handleGlowLeave);
+    });
+
     document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
     updateProgress();
     window.addEventListener("scroll", updateProgress, { passive: true });
@@ -32,6 +63,10 @@ export default function ScrollEffects() {
 
     return () => {
       observer.disconnect();
+      glowElements.forEach((element) => {
+        element.removeEventListener("mousemove", handleGlowMove);
+        element.removeEventListener("mouseleave", handleGlowLeave);
+      });
       window.removeEventListener("scroll", updateProgress);
       window.removeEventListener("resize", updateProgress);
     };

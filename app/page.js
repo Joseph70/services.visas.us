@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import TrustSection from "@/components/TrustSection";
 import ServicesSection from "@/components/ServicesSection";
 import VisualStorySection from "@/components/VisualStorySection";
 import ProcessSection from "@/components/ProcessSection";
@@ -20,7 +19,6 @@ export default function Home() {
       <Header whatsappUrl={WHATSAPP_URL} />
       <main>
         <Hero whatsappUrl={WHATSAPP_URL} />
-        <TrustSection />
         <ServicesSection />
         <VisualStorySection />
         <ProcessSection />
