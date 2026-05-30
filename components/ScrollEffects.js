@@ -46,8 +46,12 @@ export default function ScrollEffects() {
     };
 
     const handleGlowLeave = (event) => {
-      event.currentTarget.style.removeProperty("--glow-x");
-      event.currentTarget.style.removeProperty("--glow-y");
+      const target = event.currentTarget;
+      const rect = target.getBoundingClientRect();
+      const x = Math.min(rect.width, Math.max(0, event.clientX - rect.left));
+      const y = Math.min(rect.height, Math.max(0, event.clientY - rect.top));
+      target.style.setProperty("--glow-x", `${x}px`);
+      target.style.setProperty("--glow-y", `${y}px`);
     };
 
     const glowElements = Array.from(document.querySelectorAll(glowSelector));

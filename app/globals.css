@@ -12,6 +12,10 @@
   --shadow: 0 18px 45px rgba(15, 63, 105, 0.12);
   --shadow-soft: 0 10px 26px rgba(15, 63, 105, 0.09);
   --shadow-field: 0 7px 18px rgba(15, 63, 105, 0.08);
+  --glow-gold: rgba(240, 199, 83, 0.3);
+  --glow-gold-soft: rgba(255, 240, 199, 0.14);
+  --glow-x: 50%;
+  --glow-y: 50%;
   --radius: 8px;
   --section: min(1120px, calc(100% - 40px));
   --scroll-progress: 0;
@@ -28,6 +32,8 @@
   --shadow: 0 18px 48px rgba(0, 0, 0, 0.34);
   --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.26);
   --shadow-field: 0 8px 20px rgba(0, 0, 0, 0.22);
+  --glow-gold: rgba(240, 199, 83, 0.24);
+  --glow-gold-soft: rgba(255, 240, 199, 0.1);
 }
 
 :root[data-theme="dark"] body {
@@ -337,7 +343,7 @@ p {
   gap: 9px;
   min-height: 50px;
   padding: 0 22px;
-  color: var(--navy);
+  color: #082b49;
   font-weight: 800;
   border: 1px solid rgba(240, 199, 83, 0.7);
   border-radius: 8px;
@@ -360,6 +366,11 @@ p {
   background: linear-gradient(110deg, transparent 38%, rgba(255, 255, 255, 0.62) 49%, transparent 60%);
   transform: translateX(-45%) rotate(8deg);
   transition: transform 680ms ease;
+}
+
+.btn > *,
+.btn {
+  text-shadow: none;
 }
 
 .btn:hover::after,
@@ -402,6 +413,7 @@ p {
   width: 22px;
   height: 22px;
   flex: 0 0 auto;
+  filter: drop-shadow(0 1px 1px rgba(15, 63, 105, 0.08));
 }
 
 .hero {
@@ -547,11 +559,27 @@ p {
   content: "";
   pointer-events: none;
   border-radius: inherit;
+  z-index: 0;
   background:
-    radial-gradient(circle 150px at var(--glow-x, 50%) var(--glow-y, 50%), rgba(240, 199, 83, 0.24), rgba(255, 240, 199, 0.08) 38%, transparent 70%);
+    radial-gradient(ellipse 190px 135px at var(--glow-x) var(--glow-y), var(--glow-gold), var(--glow-gold-soft) 42%, rgba(240, 199, 83, 0.04) 62%, transparent 82%),
+    radial-gradient(circle 76px at var(--glow-x) var(--glow-y), rgba(255, 244, 198, 0.18), transparent 74%);
   opacity: 0;
-  transition: opacity 180ms ease;
-  mix-blend-mode: soft-light;
+  transition: opacity 320ms ease, background 180ms ease;
+  mix-blend-mode: normal;
+  filter: blur(1px);
+}
+
+.travel-card > *,
+.passport-card > *,
+.info-card > *,
+.service-card > *,
+.process-card > *,
+.benefit-item > *,
+.faq-item > *,
+.contact-form > *,
+.detail-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .travel-card:hover::before,
@@ -631,11 +659,14 @@ p {
   content: "";
   pointer-events: none;
   border-radius: inherit;
+  z-index: 0;
   background:
-    radial-gradient(circle 180px at var(--glow-x, 50%) var(--glow-y, 50%), rgba(240, 199, 83, 0.28), rgba(255, 240, 199, 0.1) 36%, transparent 68%);
+    radial-gradient(ellipse 220px 150px at var(--glow-x) var(--glow-y), var(--glow-gold), var(--glow-gold-soft) 42%, rgba(240, 199, 83, 0.04) 64%, transparent 84%),
+    radial-gradient(circle 82px at var(--glow-x) var(--glow-y), rgba(255, 246, 210, 0.16), transparent 76%);
   opacity: 0;
-  transition: opacity 180ms ease;
-  mix-blend-mode: soft-light;
+  transition: opacity 320ms ease, background 180ms ease;
+  mix-blend-mode: normal;
+  filter: blur(1.5px);
 }
 
 .info-card:hover,
@@ -734,11 +765,14 @@ p {
   inset: 0;
   content: "";
   pointer-events: none;
+  z-index: 0;
   background:
-    radial-gradient(circle 190px at var(--glow-x, 50%) var(--glow-y, 50%), rgba(240, 199, 83, 0.24), rgba(255, 240, 199, 0.08) 36%, transparent 68%);
+    radial-gradient(ellipse 230px 155px at var(--glow-x) var(--glow-y), var(--glow-gold), var(--glow-gold-soft) 42%, rgba(240, 199, 83, 0.04) 64%, transparent 84%),
+    radial-gradient(circle 86px at var(--glow-x) var(--glow-y), rgba(255, 246, 210, 0.16), transparent 76%);
   opacity: 0;
-  transition: opacity 180ms ease;
-  mix-blend-mode: soft-light;
+  transition: opacity 320ms ease, background 180ms ease;
+  mix-blend-mode: normal;
+  filter: blur(1.5px);
 }
 
 .detail-card:hover::before {
@@ -1234,6 +1268,27 @@ p {
   border-color: rgba(255, 240, 199, 0.18);
 }
 
+:root[data-theme="dark"] .btn:not(.btn-secondary):not(.btn-light) {
+  color: #061b2c;
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.28) 0%, transparent 20%, transparent 78%, rgba(255, 255, 255, 0.22) 100%),
+    linear-gradient(135deg, #c29428 0%, #f0c753 34%, #f7df95 52%, #d4a637 76%, #a77917 100%);
+  text-shadow: 0 1px 0 rgba(255, 246, 210, 0.42);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.52),
+    0 14px 28px rgba(0, 0, 0, 0.24),
+    0 0 16px rgba(240, 199, 83, 0.18);
+}
+
+:root[data-theme="dark"] .btn:not(.btn-secondary):not(.btn-light)::after {
+  background: linear-gradient(110deg, transparent 40%, rgba(255, 255, 255, 0.34) 50%, transparent 61%);
+}
+
+:root[data-theme="dark"] .btn-light {
+  color: #082b49;
+  background: #fff8e5;
+}
+
 :root[data-theme="dark"] .detail-time {
   background: rgba(240, 199, 83, 0.1);
   border-color: rgba(255, 240, 199, 0.16);
@@ -1252,6 +1307,50 @@ p {
 :root[data-theme="dark"] .menu-toggle {
   background: rgba(16, 30, 45, 0.9);
   border-color: rgba(255, 240, 199, 0.18);
+}
+
+:root[data-theme="dark"] .theme-toggle,
+:root[data-theme="dark"] .menu-toggle {
+  color: #fff0c7;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 18px rgba(240, 199, 83, 0.12),
+    var(--shadow-field);
+}
+
+:root[data-theme="dark"] .travel-card .icon,
+:root[data-theme="dark"] .benefit-item .icon,
+:root[data-theme="dark"] .service-stat strong,
+:root[data-theme="dark"] .detail-meta strong {
+  color: #fff0c7;
+  filter: drop-shadow(0 0 7px rgba(240, 199, 83, 0.28));
+}
+
+:root[data-theme="dark"] .icon-badge {
+  color: #082b49;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    inset 0 -8px 18px rgba(185, 137, 30, 0.14),
+    0 0 20px rgba(240, 199, 83, 0.2);
+}
+
+:root[data-theme="dark"] .faq-question span:last-child,
+:root[data-theme="dark"] .process-card span,
+:root[data-theme="dark"] .service-time-panel .icon-badge {
+  color: #082b49;
+}
+
+:root[data-theme="dark"] .info-card::before,
+:root[data-theme="dark"] .service-card::before,
+:root[data-theme="dark"] .detail-card::before,
+:root[data-theme="dark"] .process-card::before,
+:root[data-theme="dark"] .benefit-item::before,
+:root[data-theme="dark"] .faq-item::before,
+:root[data-theme="dark"] .contact-form::before,
+:root[data-theme="dark"] .visual-card::before,
+:root[data-theme="dark"] .travel-card::before,
+:root[data-theme="dark"] .passport-card::after {
+  mix-blend-mode: screen;
 }
 
 .contact-form textarea {
