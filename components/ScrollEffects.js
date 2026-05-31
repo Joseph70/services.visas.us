@@ -60,6 +60,47 @@ export default function ScrollEffects() {
       element.addEventListener("mouseleave", handleGlowLeave);
     });
 
+    const footer = document.querySelector(".footer");
+    let lastParticleTime = 0;
+
+    const handleFooterParticles = (event) => {
+      if (!footer || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+      }
+
+      const now = window.performance.now();
+      if (now - lastParticleTime < 26) {
+        return;
+      }
+      lastParticleTime = now;
+
+      const rect = footer.getBoundingClientRect();
+      const particle = document.createElement("span");
+      const size = 4 + Math.random() * 5;
+      const driftX = (Math.random() - 0.5) * 54;
+      const driftY = 20 + Math.random() * 46;
+      const duration = 760 + Math.random() * 420;
+
+      particle.className = "footer-particle";
+      particle.style.left = `${event.clientX - rect.left}px`;
+      particle.style.top = `${event.clientY - rect.top}px`;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.setProperty("--particle-x", `${driftX}px`);
+      particle.style.setProperty("--particle-y", `${driftY}px`);
+      particle.style.setProperty("--particle-duration", `${duration}ms`);
+      footer.appendChild(particle);
+
+      const particles = footer.querySelectorAll(".footer-particle");
+      if (particles.length > 70) {
+        particles[0].remove();
+      }
+
+      particle.addEventListener("animationend", () => particle.remove(), { once: true });
+    };
+
+    footer?.addEventListener("mousemove", handleFooterParticles);
+
     document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
     updateProgress();
     window.addEventListener("scroll", updateProgress, { passive: true });
@@ -71,6 +112,8 @@ export default function ScrollEffects() {
         element.removeEventListener("mousemove", handleGlowMove);
         element.removeEventListener("mouseleave", handleGlowLeave);
       });
+      footer?.removeEventListener("mousemove", handleFooterParticles);
+      footer?.querySelectorAll(".footer-particle").forEach((particle) => particle.remove());
       window.removeEventListener("scroll", updateProgress);
       window.removeEventListener("resize", updateProgress);
     };

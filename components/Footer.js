@@ -5,7 +5,7 @@ export default function Footer({ whatsappUrl }) {
   return (
     <footer className="footer">
       <div className="footer-brand">
-        <Image src="/logo.png" alt="Logo Services Visas US" width={96} height={96} />
+        <Image className="footer-logo-mark" src="/logo-symbol.png" alt="Logo Services Visas US" width={96} height={96} />
         <p>
           Services Visas US acompana a personas que buscan viajar con mayor
           claridad, orden documental y orientacion profesional.

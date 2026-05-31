@@ -29,8 +29,10 @@ export default function Header({ whatsappUrl }) {
   return (
     <header className="site-header">
       <a className="brand" href="/#inicio" aria-label="Services Visas US">
-        <Image src="/logo.png" alt="Logo Services Visas US" width={72} height={72} priority />
-        <span>Services Visas US</span>
+        <span className="brand-logo-shell" aria-hidden="true">
+          <Image className="brand-logo-mark" src="/logo-symbol.png" alt="" width={72} height={72} priority />
+        </span>
+        <span className="brand-name">Services Visas US</span>
       </a>
 
       <button
