@@ -7,24 +7,43 @@ import { navItems } from "@/components/siteConfig";
 
 export default function Header({ whatsappUrl }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [theme, setTheme] = useState("light");
+  const [activeSection, setActiveSection] = useState("inicio");
 
   const closeMenu = () => setIsOpen(false);
 
   useEffect(() => {
-    const savedTheme = window.localStorage.getItem("svus-theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initialTheme = savedTheme || (prefersDark ? "dark" : "light");
-    setTheme(initialTheme);
-    document.documentElement.dataset.theme = initialTheme;
-  }, []);
+    document.documentElement.removeAttribute("data-theme");
+    window.localStorage.removeItem("svus-theme");
 
-  const toggleTheme = () => {
-    const nextTheme = theme === "dark" ? "light" : "dark";
-    setTheme(nextTheme);
-    document.documentElement.dataset.theme = nextTheme;
-    window.localStorage.setItem("svus-theme", nextTheme);
-  };
+    const sectionIds = navItems
+      .map((item) => item.href.split("#")[1])
+      .filter(Boolean);
+
+    const updateActiveSection = () => {
+      const currentPosition = window.scrollY + 170;
+      const currentSection = sectionIds.reduce((active, id) => {
+        const section = document.getElementById(id);
+        if (!section) {
+          return active;
+        }
+
+        return section.offsetTop <= currentPosition ? id : active;
+      }, sectionIds[0]);
+
+      setActiveSection(currentSection);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+    window.addEventListener("hashchange", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+      window.removeEventListener("hashchange", updateActiveSection);
+    };
+  }, []);
 
   return (
     <header className="site-header">
@@ -46,14 +65,19 @@ export default function Header({ whatsappUrl }) {
       </button>
 
       <nav className={`main-nav ${isOpen ? "is-open" : ""}`} aria-label="Menu principal">
-        <button className="theme-toggle icon-only" type="button" onClick={toggleTheme} aria-label={theme === "dark" ? "Activar modo claro" : "Activar modo oscuro"}>
-          <Icon name={theme === "dark" ? "sun" : "moon"} />
-        </button>
-        {navItems.map((item) => (
-          <a key={item.href} href={item.href} onClick={closeMenu}>
-            {item.label}
-          </a>
-        ))}
+        {navItems.map((item) => {
+          const itemId = item.href.split("#")[1];
+          return (
+            <a
+              key={item.href}
+              className={activeSection === itemId ? "is-active" : undefined}
+              href={item.href}
+              onClick={closeMenu}
+            >
+              {item.label}
+            </a>
+          );
+        })}
         <a className="btn btn-small" href={whatsappUrl} target="_blank" rel="noreferrer" onClick={closeMenu}>
           Solicitar asesoria
         </a>
