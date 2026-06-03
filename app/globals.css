@@ -23,6 +23,22 @@
   --scroll-progress: 0;
 }
 
+:root[data-theme="dark"] {
+  --navy: #e6f1fb;
+  --blue-mid: #a9c4df;
+  --blue-soft: #5b7fa5;
+  --logo-blue: #7fc6e7;
+  --white: #ffffff;
+  --ink: #edf5fb;
+  --muted: #bfd0df;
+  --line: rgba(255, 240, 199, 0.18);
+  --shadow: 0 22px 58px rgba(0, 0, 0, 0.36);
+  --shadow-soft: 0 14px 34px rgba(0, 0, 0, 0.28);
+  --shadow-field: 0 9px 22px rgba(0, 0, 0, 0.24);
+  --glow-gold: rgba(240, 199, 83, 0.23);
+  --glow-gold-soft: rgba(255, 240, 199, 0.1);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -235,6 +251,47 @@ img {
 
 .main-nav .btn {
   margin-left: 10px;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  color: var(--navy);
+  border: 1px solid rgba(240, 199, 83, 0.42);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 240, 199, 0.66), rgba(255, 255, 255, 0.62));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.66),
+    var(--shadow-field);
+  cursor: pointer;
+  transition: color 180ms ease, transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.theme-toggle.icon-only {
+  width: 38px;
+  min-height: 38px;
+  margin-right: 6px;
+  padding: 0;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    0 0 22px rgba(240, 199, 83, 0.24),
+    var(--shadow-soft);
+}
+
+.theme-toggle .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.theme-toggle.icon-only + a::before {
+  display: none;
 }
 
 .menu-toggle {
@@ -1525,6 +1582,252 @@ p {
     0 0 30px rgba(240, 199, 83, 0.5);
 }
 
+:root[data-theme="dark"] body {
+  background:
+    radial-gradient(circle at 12% 2%, rgba(240, 199, 83, 0.08), transparent 30%),
+    radial-gradient(circle at 86% 12%, rgba(44, 133, 172, 0.12), transparent 34%),
+    #071522;
+}
+
+:root[data-theme="dark"] .site-header {
+  border-color: rgba(255, 240, 199, 0.18);
+  background:
+    linear-gradient(180deg, rgba(12, 29, 45, 0.94), rgba(8, 22, 36, 0.88));
+  box-shadow:
+    0 14px 36px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(240, 199, 83, 0.08);
+}
+
+:root[data-theme="dark"] .brand,
+:root[data-theme="dark"] .main-nav {
+  color: var(--navy);
+}
+
+:root[data-theme="dark"] .brand-logo-shell {
+  background:
+    radial-gradient(circle at 32% 24%, rgba(255, 240, 199, 0.24), transparent 28%),
+    linear-gradient(145deg, #0f3f69, #163553);
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.32),
+    0 0 0 1px rgba(240, 199, 83, 0.28),
+    0 0 18px rgba(240, 199, 83, 0.16);
+}
+
+:root[data-theme="dark"] .brand-name {
+  color: #fff0c7;
+  text-shadow: 0 0 14px rgba(240, 199, 83, 0.2);
+}
+
+:root[data-theme="dark"] .main-nav {
+  border-color: rgba(255, 240, 199, 0.14);
+  background: rgba(10, 29, 47, 0.72);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 0 1px rgba(44, 133, 172, 0.06);
+}
+
+:root[data-theme="dark"] .main-nav a:not(.btn):hover,
+:root[data-theme="dark"] .main-nav a:not(.btn).is-active {
+  color: #fff0c7;
+  background: rgba(240, 199, 83, 0.12);
+  box-shadow:
+    inset 0 0 0 1px rgba(240, 199, 83, 0.24),
+    0 0 18px rgba(240, 199, 83, 0.18);
+}
+
+:root[data-theme="dark"] .theme-toggle,
+:root[data-theme="dark"] .menu-toggle {
+  color: #fff0c7;
+  border-color: rgba(255, 240, 199, 0.2);
+  background:
+    linear-gradient(135deg, rgba(240, 199, 83, 0.16), rgba(12, 29, 45, 0.78));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 18px rgba(240, 199, 83, 0.12),
+    var(--shadow-field);
+}
+
+:root[data-theme="dark"] .hero::before {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(240, 199, 83, 0.14), transparent 31%),
+    radial-gradient(circle at 82% 22%, rgba(44, 133, 172, 0.2), transparent 34%),
+    linear-gradient(135deg, #071522 0%, #0b2035 48%, #0d1c2c 100%);
+}
+
+:root[data-theme="dark"] .hero-photo {
+  filter: saturate(0.95) contrast(1.02) brightness(0.82);
+}
+
+:root[data-theme="dark"] .soft-band {
+  background:
+    linear-gradient(135deg, rgba(240, 199, 83, 0.08), rgba(49, 86, 138, 0.18)),
+    #0a1928;
+}
+
+:root[data-theme="dark"] .eyebrow {
+  color: #fff0c7;
+  border-color: rgba(255, 240, 199, 0.24);
+  background:
+    linear-gradient(135deg, rgba(240, 199, 83, 0.16), rgba(13, 34, 54, 0.78));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 8px 18px rgba(0, 0, 0, 0.22),
+    0 0 16px rgba(240, 199, 83, 0.1);
+}
+
+:root[data-theme="dark"] .btn:not(.btn-secondary):not(.btn-light) {
+  color: #061b2c;
+  text-shadow: 0 1px 0 rgba(255, 246, 210, 0.42);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.52),
+    0 16px 30px rgba(0, 0, 0, 0.26),
+    0 0 18px rgba(240, 199, 83, 0.2);
+}
+
+:root[data-theme="dark"] .btn-secondary {
+  color: #e6f1fb;
+  border-color: rgba(255, 240, 199, 0.18);
+  background: rgba(10, 29, 47, 0.78);
+}
+
+:root[data-theme="dark"] .btn-light {
+  color: #082b49;
+  background: #fff8e5;
+}
+
+:root[data-theme="dark"] .info-card,
+:root[data-theme="dark"] .service-card,
+:root[data-theme="dark"] .detail-card,
+:root[data-theme="dark"] .process-card,
+:root[data-theme="dark"] .benefit-item,
+:root[data-theme="dark"] .faq-item,
+:root[data-theme="dark"] .contact-form,
+:root[data-theme="dark"] .service-time-panel,
+:root[data-theme="dark"] .travel-card,
+:root[data-theme="dark"] .passport-card {
+  color: var(--ink);
+  border-color: rgba(255, 240, 199, 0.14);
+  background:
+    linear-gradient(180deg, rgba(18, 42, 64, 0.9), rgba(10, 28, 45, 0.92));
+  box-shadow:
+    0 16px 38px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+:root[data-theme="dark"] .passport-card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(239, 247, 252, 0.93));
+  border-color: rgba(240, 199, 83, 0.45);
+  box-shadow:
+    0 20px 48px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(240, 199, 83, 0.16);
+}
+
+:root[data-theme="dark"] .passport-card span {
+  color: #0f3f69;
+}
+
+:root[data-theme="dark"] .travel-card strong,
+:root[data-theme="dark"] .service-time-panel span,
+:root[data-theme="dark"] .detail-meta strong,
+:root[data-theme="dark"] .service-stat strong {
+  color: #fff0c7;
+}
+
+:root[data-theme="dark"] .travel-card .icon,
+:root[data-theme="dark"] .benefit-item .icon,
+:root[data-theme="dark"] .icon-whatsapp {
+  color: #fff0c7;
+  filter: drop-shadow(0 0 8px rgba(240, 199, 83, 0.22));
+}
+
+:root[data-theme="dark"] .icon-badge,
+:root[data-theme="dark"] .process-card span,
+:root[data-theme="dark"] .faq-question span:last-child,
+:root[data-theme="dark"] .service-time-panel .icon-badge {
+  color: #082b49;
+  background:
+    radial-gradient(circle at 28% 22%, rgba(255, 255, 255, 0.82), transparent 30%),
+    linear-gradient(145deg, #fff0c7, #f0c753 54%, #c99622);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.74),
+    inset 0 -8px 18px rgba(185, 137, 30, 0.14),
+    0 0 22px rgba(240, 199, 83, 0.24);
+}
+
+:root[data-theme="dark"] .service-cta {
+  color: #fff0c7;
+}
+
+:root[data-theme="dark"] .visual-card {
+  border-color: rgba(255, 240, 199, 0.16);
+  background: #10263b;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
+}
+
+:root[data-theme="dark"] .visual-card img {
+  filter: saturate(0.9) contrast(1.04) brightness(0.78);
+}
+
+:root[data-theme="dark"] .visual-card::after {
+  background: linear-gradient(0deg, rgba(3, 15, 25, 0.9), rgba(3, 15, 25, 0));
+}
+
+:root[data-theme="dark"] .carousel-dots button {
+  background: rgba(255, 240, 199, 0.16);
+}
+
+:root[data-theme="dark"] .cta-box {
+  border-color: rgba(219, 236, 255, 0.2);
+  background:
+    linear-gradient(135deg, rgba(18, 58, 94, 0.58), rgba(70, 109, 158, 0.28)),
+    radial-gradient(circle at 82% 22%, rgba(240, 199, 83, 0.13), transparent 34%),
+    radial-gradient(circle at 12% 8%, rgba(219, 236, 255, 0.16), transparent 28%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06),
+    0 24px 60px rgba(0, 0, 0, 0.34),
+    0 0 34px rgba(44, 133, 172, 0.1);
+}
+
+:root[data-theme="dark"] .contact-form input,
+:root[data-theme="dark"] .contact-form select,
+:root[data-theme="dark"] .contact-form textarea {
+  color: #edf5fb;
+  background: rgba(5, 17, 29, 0.78);
+  border-color: rgba(255, 240, 199, 0.16);
+}
+
+:root[data-theme="dark"] .contact-form input::placeholder,
+:root[data-theme="dark"] .contact-form textarea::placeholder {
+  color: #9fb2c5;
+}
+
+:root[data-theme="dark"] .contact-form input:focus,
+:root[data-theme="dark"] .contact-form select:focus,
+:root[data-theme="dark"] .contact-form textarea:focus {
+  border-color: #7fc6e7;
+  box-shadow: 0 0 0 4px rgba(127, 198, 231, 0.14);
+}
+
+:root[data-theme="dark"] .form-status {
+  color: #fff0c7;
+}
+
+:root[data-theme="dark"] .whatsapp-float .icon-whatsapp {
+  color: #0b4169;
+  filter:
+    drop-shadow(0 1px 0 rgba(255, 248, 218, 0.68))
+    drop-shadow(0 2px 5px rgba(0, 0, 0, 0.34));
+}
+
+:root[data-theme="dark"] .footer {
+  border-top-color: rgba(240, 199, 83, 0.42);
+  background:
+    radial-gradient(circle at 18% 8%, rgba(240, 199, 83, 0.08), transparent 32%),
+    linear-gradient(180deg, #030303, #000000);
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(26px);
@@ -1687,6 +1990,16 @@ p {
   .main-nav .btn {
     margin-top: 6px;
     margin-left: 0;
+  }
+
+  .theme-toggle.icon-only {
+    width: 100%;
+    min-height: 44px;
+    margin: 0 0 4px;
+  }
+
+  .theme-toggle.icon-only + a::before {
+    display: none;
   }
 
   .section {
